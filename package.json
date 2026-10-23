@@ -29,7 +29,9 @@
   ],
   "activationEvents": [
     "onLanguage:java",
-    "onCommand:java.checkstyle.quickFix"
+    "onCommand:java.checkstyle.quickFix",
+    "onCommand:java.checkstyle.checkCode",
+    "onCommand:java.checkstyle.setConfiguration"
   ],
   "main": "./dist/extension",
   "contributes": {
