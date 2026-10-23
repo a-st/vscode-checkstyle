@@ -1,0 +1,16 @@
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuring-dependabot-version-updates
+
+version: 2
+updates:
+- package-ecosystem: maven
+  directory: /jdtls.ext
+  schedule:
+    interval: daily
+- package-ecosystem: "npm"
+  directory: /
+  schedule:
+    interval: "daily"
+- package-ecosystem: github-actions
+  directory: /
+  schedule:
+    interval: daily
