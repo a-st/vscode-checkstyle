@@ -2,7 +2,7 @@
   "name": "checkstyle",
   "displayName": "Checkstyle for VS Code",
   "description": "%description%",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "author": "Sheng Chen",
   "publisher": "a-st",
   "contributors": [
