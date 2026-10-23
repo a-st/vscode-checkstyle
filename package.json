@@ -1,10 +1,10 @@
 {
-  "name": "vscode-checkstyle",
-  "displayName": "Checkstyle for Java",
+  "name": "checkstyle",
+  "displayName": "Checkstyle for VS Code",
   "description": "%description%",
   "version": "1.5.0",
   "author": "Sheng Chen",
-  "publisher": "shengchen",
+  "publisher": "a-st",
   "contributors": [
     "Alexander Straube"
   ],

@@ -3,17 +3,17 @@
 > Check your Java code format and fix it!
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jdneo/vscode-checkstyle/master/resources/icon_checkstyle.png" alt="">
+  <img src="https://raw.githubusercontent.com/a-st/vscode-checkstyle/master/resources/icon_checkstyle.png" alt="">
 </p>
 <p align="center">
-  <a href="https://github.com/jdneo/vscode-checkstyle/actions/workflows/build.yml?query=branch%3Amaster">
-    <img src="https://img.shields.io/github/actions/workflow/status/jdneo/vscode-checkstyle/build.yml?style=flat-square" alt="">
+  <a href="https://github.com/a-st/vscode-checkstyle/actions/workflows/build.yml?query=branch%3Amaster">
+    <img src="https://img.shields.io/github/actions/workflow/status/a-st/vscode-checkstyle/build.yml?style=flat-square" alt="">
   </a>
   <a href="https://marketplace.visualstudio.com/items?itemName=shengchen.vscode-checkstyle">
     <img src="https://img.shields.io/visual-studio-marketplace/d/shengchen.vscode-checkstyle.svg?style=flat-square" alt="">
   </a>
-  <a href="https://github.com/jdneo/vscode-checkstyle/discussions">
-    <img src="https://img.shields.io/github/discussions/jdneo/vscode-checkstyle?style=flat-square" alt="">
+  <a href="https://github.com/a-st/vscode-checkstyle/discussions">
+    <img src="https://img.shields.io/github/discussions/a-st/vscode-checkstyle?style=flat-square" alt="">
   </a>
 </p>
 
@@ -23,13 +23,13 @@
 - [Language Support for Java by Red Hat](https://marketplace.visualstudio.com/items?itemName=redhat.java)
 
 ## Quick Start
-![demo](https://raw.githubusercontent.com/jdneo/vscode-checkstyle/master/docs/gifs/demo.gif)
+![demo](https://raw.githubusercontent.com/a-st/vscode-checkstyle/master/docs/gifs/demo.gif)
 
 ## Features
 
 ### Set Checkstyle Configuration File
 
-![demo](https://raw.githubusercontent.com/jdneo/vscode-checkstyle/master/docs/gifs/setConfiguration.gif)
+![demo](https://raw.githubusercontent.com/a-st/vscode-checkstyle/master/docs/gifs/setConfiguration.gif)
 
 - To set the configuration file, Just Right click the `.xml` file and select `Set the Checkstyle Configuration File`.
 
@@ -39,7 +39,7 @@
 
 ### Set Checkstyle Version
 
-![demo](https://raw.githubusercontent.com/jdneo/vscode-checkstyle/master/docs/gifs/setVersion(lower).gif)
+![demo](https://raw.githubusercontent.com/a-st/vscode-checkstyle/master/docs/gifs/setVersion(lower).gif)
 
 - You can use the command `Checkstyle: Set the Checkstyle Version` to manually set the Checkstyle version according to your project preferences. The extension will automatically download the required jar files if they do not exist locally.
 
@@ -47,9 +47,9 @@
 
 ### Check the Style and Fix the Violations
 
-![demo](https://raw.githubusercontent.com/jdneo/vscode-checkstyle/master/docs/gifs/liveLinting.gif)
+![demo](https://raw.githubusercontent.com/a-st/vscode-checkstyle/master/docs/gifs/liveLinting.gif)
 
-- When editing a Java file, the extension will check the file format and provide quick fixes if possible. You can click the ![bulb](https://raw.githubusercontent.com/jdneo/vscode-checkstyle/master/docs/imgs/btn_bulb.png) button in the editor to show the available quick fixes.
+- When editing a Java file, the extension will check the file format and provide quick fixes if possible. You can click the ![bulb](https://raw.githubusercontent.com/a-st/vscode-checkstyle/master/docs/imgs/btn_bulb.png) button in the editor to show the available quick fixes.
 
 
 
@@ -78,4 +78,4 @@ or
 
 ## Release Notes
 
-Refer to [CHANGELOG.md](https://github.com/jdneo/vscode-checkstyle/blob/master/CHANGELOG.md)
+Refer to [CHANGELOG.md](https://github.com/a-st/vscode-checkstyle/blob/master/CHANGELOG.md)
