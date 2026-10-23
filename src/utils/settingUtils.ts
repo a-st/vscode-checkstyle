@@ -28,10 +28,13 @@ export function getCheckstyleExtensionModules(uri?: Uri): string[] {
   return modules.map((mod: string) => resolveVariables(mod, uri));
 }
 
-export function getCheckstyleProperties(uri?: Uri): object {
-  const properties: object = getConfiguration(uri).get(JAVA_CHECKSTYLE_PROPERTIES, {});
+export function getCheckstyleProperties(uri?: Uri): Record<string, unknown> {
+  const properties: Record<string, unknown> = getConfiguration(uri).get<Record<string, unknown>>(JAVA_CHECKSTYLE_PROPERTIES, {});
   for (const key of Object.keys(properties)) {
-    properties[key] = resolveVariables(resolveVariables(properties[key], uri), uri);
+    const value: unknown = properties[key];
+    if (typeof value === 'string') {
+      properties[key] = resolveVariables(resolveVariables(value, uri), uri);
+    }
   }
   return properties;
 }

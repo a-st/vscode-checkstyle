@@ -16,13 +16,13 @@ import { isAutoCheckEnabled } from './utils/settingUtils';
 
 class CheckstyleDiagnosticManager implements vscode.Disposable {
 
-  private context: vscode.ExtensionContext;
-  private enabled: boolean;
-  private listeners: vscode.Disposable[];
-  private pendingDiagnostics: Set<SyncedFile | vscode.Uri>;
-  private syncedFiles: Map<string, SyncedFile>;
-  private synchronizer: FileSynchronizer;
-  private diagnosticDelayTrigger: () => Promise<void>;
+  private context!: vscode.ExtensionContext;
+  private enabled!: boolean;
+  private listeners!: vscode.Disposable[];
+  private pendingDiagnostics!: Set<SyncedFile | vscode.Uri>;
+  private syncedFiles!: Map<string, SyncedFile>;
+  private synchronizer!: FileSynchronizer;
+  private diagnosticDelayTrigger!: _.DebouncedFunc<() => Promise<void>>;
 
   public initialize(context: vscode.ExtensionContext): void {
     this.context = context;

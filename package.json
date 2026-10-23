@@ -17,7 +17,7 @@
     "url": "https://github.com/a-st/vscode-checkstyle"
   },
   "engines": {
-    "vscode": "^1.64.0"
+    "vscode": "^1.140.0"
   },
   "categories": [
     "Programming Languages",
@@ -29,9 +29,7 @@
   ],
   "activationEvents": [
     "onLanguage:java",
-    "onCommand:java.checkstyle.quickFix",
-    "onCommand:java.checkstyle.checkCode",
-    "onCommand:java.checkstyle.setConfiguration"
+    "onCommand:java.checkstyle.quickFix"
   ],
   "main": "./dist/extension",
   "contributes": {

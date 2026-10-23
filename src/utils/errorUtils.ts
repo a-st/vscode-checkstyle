@@ -6,15 +6,17 @@ import { checkstyleChannel } from '../checkstyleChannel';
 import { checkstyleConfigurationManager } from '../checkstyleConfigurationManager';
 import { checkstyleStatusBar } from '../checkstyleStatusBar';
 
-export async function handleErrors(error: Error): Promise<void> {
-  if (error['data']) {
-    const message: string | undefined = error['data'].message;
+export async function handleErrors(error: unknown): Promise<void> {
+  const errorData: unknown = error !== null && typeof error === 'object' && 'data' in error ? error.data : undefined;
+  if (errorData !== undefined && errorData !== null) {
+    const messageValue: unknown = typeof errorData === 'object' && 'message' in errorData ? errorData.message : undefined;
+    const message: string | undefined = typeof messageValue === 'string' ? messageValue : undefined;
     if (message && message.startsWith('cannot initialize module')) {
       handleModuleIntialization(message);
     }
-    checkstyleChannel.appendLine(JSON.stringify(error['data']));
+    checkstyleChannel.appendLine(JSON.stringify(errorData) || String(errorData));
   } else {
-    checkstyleChannel.appendLine(error.stack || error.toString());
+    checkstyleChannel.appendLine(error instanceof Error ? error.stack || error.toString() : String(error));
   }
 
   checkstyleStatusBar.showError();

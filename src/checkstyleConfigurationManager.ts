@@ -18,10 +18,10 @@ import { getCheckstyleConfigurationPath, getCheckstyleExtensionModules, getCheck
 
 class CheckstyleConfigurationManager implements vscode.Disposable {
 
-  private context: vscode.ExtensionContext;
-  private config: ICheckstyleConfiguration;
+  private context!: vscode.ExtensionContext;
+  private config!: ICheckstyleConfiguration;
   private configWatcher: vscode.FileSystemWatcher | undefined;
-  private jarStorage: string;
+  private jarStorage!: string;
 
   public async initialize(context: vscode.ExtensionContext): Promise<void> {
     this.context = context;
@@ -64,7 +64,7 @@ class CheckstyleConfigurationManager implements vscode.Disposable {
 
   public async getDownloadedVersions(): Promise<string[]> {
     const versions: string[] = [];
-    for (const file of await fse.readdir(this.context.globalStoragePath)) {
+    for (const file of await fse.readdir(this.context.globalStorageUri.fsPath)) {
       const match: RegExpMatchArray | null = file.match(/checkstyle-([\d.]+)-all\.jar/);
       if (match) {
         versions.push(match[1]);
@@ -75,14 +75,14 @@ class CheckstyleConfigurationManager implements vscode.Disposable {
 
   public async fetchApiData<T = any>(api: string): Promise<T> {
     const apiFile: string = `${api.split('/').slice(-1)[0]}.json`;
-    const apiPath: string = path.join(this.context.globalStoragePath, 'api', apiFile);
+    const apiPath: string = path.join(this.context.globalStorageUri.fsPath, 'api', apiFile);
     const apiUrl: string = `https://api.github.com/repos/checkstyle/checkstyle${api}`;
     async function ensureLatestApiData(location: vscode.ProgressLocation): Promise<T> {
       return await vscode.window.withProgress({
         location, title: `Fetching Checkstyle metadata (${api})...`,
       }, async (_progress: vscode.Progress<object>, _token: vscode.CancellationToken) => {
-        const response: Response = await fetch(apiUrl, { timeout: 30000 });
-        const apiData: T = await response.json();
+        const response: Response = await fetch(apiUrl, { signal: AbortSignal.timeout(30000) });
+        const apiData: T = await response.json() as T;
         await fse.ensureFile(apiPath);
         await fse.writeJSON(apiPath, apiData);
         return apiData;

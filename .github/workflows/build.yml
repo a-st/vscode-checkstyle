@@ -41,7 +41,7 @@ jobs:
         run: npm run build-plugin
 
       - name: Build .vsix
-        run: npx vsce@latest package
+        run: npx @vscode/vsce@latest package
 
   windows:
     name: Windows
@@ -70,7 +70,7 @@ jobs:
         run: npm run build-plugin
 
       - name: Build .vsix
-        run: npx vsce@latest package
+        run: npx @vscode/vsce@latest package
 
   darwin:
     name: macOS
@@ -99,4 +99,4 @@ jobs:
         run: npm run build-plugin
 
       - name: Build .vsix
-        run: npx vsce@latest package
+        run: npx @vscode/vsce@latest package

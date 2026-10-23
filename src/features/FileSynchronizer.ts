@@ -150,7 +150,7 @@ export class FileSynchronizer implements vscode.Disposable {
           await syncTask(tempPath);
           break;
         } catch (error) { // Error in IO task, e.g. file occupied
-          checkstyleChannel.appendLine(error.toString());
+          checkstyleChannel.appendLine(String(error));
           tempPath = this.ensureTempPath(tempPath); // Compute a new temp path
           failCount += 1;
         }
@@ -170,7 +170,7 @@ export class FileSynchronizer implements vscode.Disposable {
   }
 
   private getTempStorage(): string {
-    const storagePath: string | undefined = this.context.storagePath;
+    const storagePath: string | undefined = this.context.storageUri?.fsPath;
     if (!storagePath) {
       return path.join(os.tmpdir(), `vscode_checkstyle_sync_${Math.random().toString(36).slice(2, 10)}`);
     }

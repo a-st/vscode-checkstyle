@@ -64,7 +64,7 @@ If you want to build and install your own private build:
 
 ```shell
 npm run build-plugin
-npx vsce@latest package
+npx @vscode/vsce@latest package
 code --install-extension vscode-checkstyle-*.vsix
 ```
 

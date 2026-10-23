@@ -60,11 +60,12 @@ export async function findNonIgnoredFiles(pattern: string): Promise<Uri[]> {
   const workspaceFolder: WorkspaceFolder | undefined = getDefaultWorkspaceFolder();
   if (workspaceFolder) {
     try { // tslint:disable-next-line: typedef
-      const result: string = await new Promise<string>((resolve, reject) => {
+      const result: string = await new Promise<string>((resolve: (value: string) => void, reject: (reason?: Error) => void) => {
         cp.exec(`git check-ignore ${uris.map((uri: Uri) => workspace.asRelativePath(uri)).join(' ')}`, {
           cwd: workspaceFolder.uri.fsPath,
-        }, (error: Error & { code?: 0 | 1 | 128 }, stdout: string, stderr: string) => {
-          if (error && (error.code !== 0 && error.code !== 1)) {
+          encoding: 'utf8',
+        }, (error: cp.ExecException | null, stdout: string, stderr: string) => {
+          if (error && error.code !== 1 && error.code !== 0) {
             reject(error);
           } else if (stderr) {
             reject(new Error(stderr));
@@ -78,7 +79,7 @@ export async function findNonIgnoredFiles(pattern: string): Promise<Uri[]> {
       });
       uris = _.differenceBy(uris, excludes, 'fsPath');
     } catch (error) {
-      checkstyleChannel.appendLine(`git check-ignore exec error: ${error.toString()}`);
+      checkstyleChannel.appendLine(`git check-ignore exec error: ${String(error)}`);
     }
   }
 
