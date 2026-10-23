@@ -9,8 +9,8 @@
   <a href="https://github.com/a-st/vscode-checkstyle/actions/workflows/build.yml?query=branch%3Amaster">
     <img src="https://img.shields.io/github/actions/workflow/status/a-st/vscode-checkstyle/build.yml?style=flat-square" alt="">
   </a>
-  <a href="https://marketplace.visualstudio.com/items?itemName=a-st.checkstyle">
-    <img src="https://img.shields.io/visual-studio-marketplace/d/sa-st.checkstyle.svg?style=flat-square" alt="">
+  <a href="https://marketplace.visualstudio.com/items?itemName=a.st.vscode-checkstyle-v2">
+    <img src="https://img.shields.io/visual-studio-marketplace/d/a.st.vscode-checkstyle-v2.svg?style=flat-square" alt="">
   </a>
   <a href="https://github.com/a-st/vscode-checkstyle/discussions">
     <img src="https://img.shields.io/github/discussions/a-st/vscode-checkstyle?style=flat-square" alt="">

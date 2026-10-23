@@ -1,15 +1,14 @@
 {
-  "name": "checkstyle",
-  "displayName": "Checkstyle for VS Code",
+  "name": "vscode-checkstyle-v2",
+  "displayName": "Checkstyle Support for VS Code",
   "description": "%description%",
-  "version": "1.5.1",
+  "version": "2.0.0",
   "author": "Sheng Chen",
   "publisher": "a-st",
   "contributors": [
     "Alexander Straube"
   ],
   "license": "GNU LGPL V3.0",
-  "aiKey": "0558bc67-cc55-4730-9f4a-64b8f71393cb",
   "icon": "resources/icon_checkstyle.png",
   "homepage": "https://github.com/a-st/vscode-checkstyle/blob/master/README.md",
   "repository": {
@@ -29,9 +28,7 @@
   ],
   "activationEvents": [
     "onLanguage:java",
-    "onCommand:java.checkstyle.quickFix",
-    "onCommand:java.checkstyle.checkCode",
-    "onCommand:java.checkstyle.setConfiguration"
+    "onCommand:java.checkstyle.quickFix"    
   ],
   "main": "./dist/extension",
   "contributes": {
@@ -133,7 +130,7 @@
     "globals": "^17.13.0",
     "native-ext-loader": "^2.3.0",
     "ts-loader": "^9.6.2",
-    "typescript": "^6.0.3",
+    "typescript": "<6.1.0",
     "webpack": "^5.112.1",
     "webpack-cli": "^7.2.3"
   },

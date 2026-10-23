@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.shengchen.checkstyle</groupId>
         <artifactId>parent</artifactId>
-        <version>1.5.1</version>
+        <version>2.0.0</version>
     </parent>
     <artifactId>com.shengchen.checkstyle.target</artifactId>
     <name>${base.name} :: Target Platform</name>
