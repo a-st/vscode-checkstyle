@@ -9,8 +9,8 @@
   <a href="https://github.com/a-st/vscode-checkstyle/actions/workflows/build.yml?query=branch%3Amaster">
     <img src="https://img.shields.io/github/actions/workflow/status/a-st/vscode-checkstyle/build.yml?style=flat-square" alt="">
   </a>
-  <a href="https://marketplace.visualstudio.com/items?itemName=shengchen.vscode-checkstyle">
-    <img src="https://img.shields.io/visual-studio-marketplace/d/shengchen.vscode-checkstyle.svg?style=flat-square" alt="">
+  <a href="https://marketplace.visualstudio.com/items?itemName=a-st.checkstyle">
+    <img src="https://img.shields.io/visual-studio-marketplace/d/sa-st.checkstyle.svg?style=flat-square" alt="">
   </a>
   <a href="https://github.com/a-st/vscode-checkstyle/discussions">
     <img src="https://img.shields.io/github/discussions/a-st/vscode-checkstyle?style=flat-square" alt="">
@@ -18,8 +18,8 @@
 </p>
 
 ## Requirements
-- JDK (version 17 or later)
-- VS Code (version 1.30.0 or later)
+- JDK (version 25 or later)
+- VS Code (version 1.140.0 or later)
 - [Language Support for Java by Red Hat](https://marketplace.visualstudio.com/items?itemName=redhat.java)
 
 ## Quick Start
@@ -56,7 +56,7 @@
 ## Settings
 | Setting Name | Description | Default Value |
 |---|---|---|
-| `java.checkstyle.version` | Specify the Checkstyle Version. | `9.3` |
+| `java.checkstyle.version` | Specify the Checkstyle Version. | `14.3.0` |
 | `java.checkstyle.configuration` | Specify the path of the Checkstyle configuration file. The path can either be a local file path or a URL. | `""` |
 | `java.checkstyle.properties` | Specify the customized properties used in the Checkstyle configuration. | `{}` |
 | `java.checkstyle.modules` | Specify the third-party modules used for Checkstyle. | `[]` |
