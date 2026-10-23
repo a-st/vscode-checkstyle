@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.shengchen.checkstyle</groupId>
         <artifactId>parent</artifactId>
-        <version>1.4.2</version>
+        <version>1.5.0</version>
     </parent>
     <artifactId>com.shengchen.checkstyle.checker</artifactId>
     <packaging>jar</packaging>
@@ -34,7 +34,7 @@
         </plugins>
     </build>
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>25</maven.compiler.source>
+        <maven.compiler.target>25</maven.compiler.target>
     </properties>
 </project>

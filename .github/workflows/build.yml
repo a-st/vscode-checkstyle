@@ -5,6 +5,7 @@ on:
     branches: [master]
   pull_request:
     branches: [master]
+  workflow_dispatch:
 
 jobs:
   linux:
@@ -20,15 +21,15 @@ jobs:
           sudo apt-get install -y libxkbfile-dev pkg-config libsecret-1-dev libxss1 dbus xvfb libgtk-3-0 libgbm1
           sudo /usr/bin/Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
           sleep 3
-      - name: Set up JDK 17
+      - name: Set up JDK 25
         uses: actions/setup-java@v1
         with:
-          java-version: "17"
+          java-version: "25"
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v2
         with:
-          node-version: 18
+          node-version: 22
 
       - name: Install Node.js modules
         run: npm install
@@ -49,15 +50,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up JDK 17
+      - name: Set up JDK 25
         uses: actions/setup-java@v1
         with:
-          java-version: "17"
+          java-version: "25"
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v2
         with:
-          node-version: 18
+          node-version: 22
 
       - name: Install Node.js modules
         run: npm install
@@ -78,15 +79,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up JDK 17
+      - name: Set up JDK 25
         uses: actions/setup-java@v1
         with:
-          java-version: "17"
+          java-version: "25"
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v2
         with:
-          node-version: 18
+          node-version: 22
 
       - name: Install Node.js modules
         run: npm install

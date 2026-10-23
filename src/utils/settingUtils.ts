@@ -29,7 +29,7 @@ export function getCheckstyleExtensionModules(uri?: Uri): string[] {
 }
 
 export function getCheckstyleProperties(uri?: Uri): object {
-  const properties: {} = getConfiguration(uri).get(JAVA_CHECKSTYLE_PROPERTIES, {});
+  const properties: object = getConfiguration(uri).get(JAVA_CHECKSTYLE_PROPERTIES, {});
   for (const key of Object.keys(properties)) {
     properties[key] = resolveVariables(resolveVariables(properties[key], uri), uri);
   }

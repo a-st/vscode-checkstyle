@@ -80,7 +80,7 @@ class CheckstyleConfigurationManager implements vscode.Disposable {
     async function ensureLatestApiData(location: vscode.ProgressLocation): Promise<T> {
       return await vscode.window.withProgress({
         location, title: `Fetching Checkstyle metadata (${api})...`,
-      }, async (_progress: vscode.Progress<{}>, _token: vscode.CancellationToken) => {
+      }, async (_progress: vscode.Progress<object>, _token: vscode.CancellationToken) => {
         const response: Response = await fetch(apiUrl, { timeout: 30000 });
         const apiData: T = await response.json();
         await fse.ensureFile(apiPath);

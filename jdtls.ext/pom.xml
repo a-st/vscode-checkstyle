@@ -4,13 +4,13 @@
     <groupId>com.shengchen.checkstyle</groupId>
     <artifactId>parent</artifactId>
     <name>${base.name} :: Parent</name>
-    <version>1.4.2</version>
+    <version>1.5.0</version>
     <packaging>pom</packaging>
     <properties>
         <base.name>Java Checkstyle Runner</base.name>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <tycho-version>2.7.2</tycho-version>
-        <checkstyle-version>9.0</checkstyle-version>
+        <tycho-version>5.0.4</tycho-version>
+        <checkstyle-version>14.3.0</checkstyle-version>
     </properties>
     <modules>
         <module>com.shengchen.checkstyle.runner</module>
@@ -23,7 +23,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>2.15</version>
+                    <version>3.6.0</version>
                     <executions>
                         <!-- Ensures that both integration-test and verify
                             goals of the Failsafe Maven plugin are executed. -->
@@ -49,7 +49,6 @@
                     <artifactId>target-platform-configuration</artifactId>
                     <version>${tycho-version}</version>
                     <configuration>
-                        <resolver>p2</resolver>
                         <target>
                             <artifact>
                                 <groupId>com.shengchen.checkstyle</groupId>
@@ -81,7 +80,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
-                    <version>3.1.2</version>
+                    <version>3.6.0</version>
                     <executions>
                         <execution>
                             <?m2e ignore?>
