@@ -130,7 +130,7 @@
     "globals": "^17.13.0",
     "native-ext-loader": "^2.3.0",
     "ts-loader": "^9.6.2",
-    "typescript": "<6.1.0",
+    "typescript": "<7.1.0",
     "webpack": "^5.112.1",
     "webpack-cli": "^7.2.3"
   },
