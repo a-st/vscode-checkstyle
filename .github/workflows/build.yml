@@ -25,6 +25,7 @@ jobs:
         uses: actions/setup-java@v6
         with:
           java-version: "25"
+          distribution: temurin
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v7
@@ -54,6 +55,7 @@ jobs:
         uses: actions/setup-java@v6
         with:
           java-version: "25"
+          distribution: temurin
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v7
@@ -83,6 +85,7 @@ jobs:
         uses: actions/setup-java@v6
         with:
           java-version: "25"
+          distribution: temurin
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v7
