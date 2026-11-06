@@ -1,0 +1,131 @@
+---
+name: Release
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  # Allow vsce to request a GitHub OIDC token for Marketplace trusted publishing.
+  id-token: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  JAVA_VERSION: 25
+  NODE_VERSION: 24
+
+jobs:
+  release:
+    name: Build and release VSIX
+    environment: release
+    if: github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set build metadata
+        id: release
+        shell: bash
+        run: |
+          package_version="$(jq -r '.version' package.json)"
+
+          tag_version="${GITHUB_REF_NAME#v}"
+
+          if [[ ! "$GITHUB_REF_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ || "$tag_version" != "$package_version" ]]; then
+            echo "::error::Tag $GITHUB_REF_NAME must be v$package_version"
+            exit 1
+          fi
+
+          echo "vsix=vscode-checkstyle-v2-$package_version.vsix" >> "$GITHUB_OUTPUT"
+
+      # A retry can run for the same tag if the GitHub release succeeded but marketplace publishing failed.
+      # Published releases are immutable, so reuse their VSIX instead of rebuilding or replacing assets.
+      # Missing releases and unfinished drafts still need the build and publication steps.
+      - name: Determine GitHub release state
+        id: release_state
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Listing releases distinguishes a missing release from an API failure.
+          is_draft="$(gh api --paginate "repos/$GITHUB_REPOSITORY/releases" \
+            --jq ".[] | select(.tag_name == \"$GITHUB_REF_NAME\") | .draft")"
+
+          case "$is_draft" in
+            true) state=draft ;;
+            false) state=published ;;
+            "") state=missing ;;
+            *) echo "::error::Unexpected GitHub release state: $is_draft"; exit 1 ;;
+          esac
+
+          echo "state=$state" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Java environment
+        uses: actions/setup-java@77dd5b2ce225ea11469928ac317850245a74ae78  # v6.2.0
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: temurin
+
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1  # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build OSGi bundle
+        run: npm run build-plugin
+
+      - name: Build VSIX
+        if: steps.release_state.outputs.state != 'published'
+        run: |
+          mkdir -p artifacts
+          npx @vscode/vsce@latest package --out "artifacts/${{ steps.release.outputs.vsix }}"
+
+      - name: Prepare versioned GitHub release
+        if: steps.release_state.outputs.state != 'published'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [[ "${{ steps.release_state.outputs.state }}" == "draft" ]]; then
+            gh release upload "${{ github.ref_name }}" \
+              "artifacts/${{ steps.release.outputs.vsix }}" \
+              --clobber
+            gh release edit "${{ github.ref_name }}" --draft=false
+          else
+            gh release create "${{ github.ref_name }}" \
+              "artifacts/${{ steps.release.outputs.vsix }}" \
+              --title "${{ github.ref_name }}" \
+              --generate-notes \
+              --verify-tag
+          fi
+
+      - name: Download published VSIX
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p artifacts
+          # Publish the exact asset from the immutable GitHub release
+          gh release download "${{ github.ref_name }}" \
+            --pattern "${{ steps.release.outputs.vsix }}" \
+            --dir artifacts \
+            --clobber
+
+      - name: Publish to Visual Studio Marketplace
+        run: |
+          npx @vscode/vsce@latest publish \
+            --oidc \
+            --skip-duplicate \
+            --packagePath "artifacts/${{ steps.release.outputs.vsix }}"
