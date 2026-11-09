@@ -2,7 +2,7 @@
   "name": "checkstyle-vscode",
   "displayName": "Checkstyle Extension for Java",
   "description": "%description%",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "author": "Sheng Chen",
   "publisher": "a-st",
   "contributors": [

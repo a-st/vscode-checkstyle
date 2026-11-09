@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v2.0.2](https://github.com/a-st/vscode-checkstyle/tree/v2.0.2) (2026-11-09)
+
+[Full Changelog](https://github.com/a-st/vscode-checkstyle/compare/v2.0.1...v2.0.2)
+
+**Merged pull requests:**
+
+- chore: rename to checkstyle-vscode [\#14](https://github.com/a-st/vscode-checkstyle/pull/14) ([a-st](https://github.com/a-st))
+- chore\(deps-dev\): bump typescript from 6.0.3 to 7.0.2 [\#13](https://github.com/a-st/vscode-checkstyle/pull/13) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v2.0.1](https://github.com/a-st/vscode-checkstyle/tree/v2.0.1) (2026-11-06)
 
 [Full Changelog](https://github.com/a-st/vscode-checkstyle/compare/2.0.0...v2.0.1)
