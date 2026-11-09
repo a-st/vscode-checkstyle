@@ -1,6 +1,6 @@
 {
-  "name": "vscode-checkstyle-v2",
-  "displayName": "Checkstyle Support for VS Code",
+  "name": "checkstyle-vscode",
+  "displayName": "Checkstyle Extension for Java",
   "description": "%description%",
   "version": "2.0.1",
   "author": "Sheng Chen",
