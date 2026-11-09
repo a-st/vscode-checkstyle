@@ -65,7 +65,7 @@ If you want to build and install your own private build:
 ```shell
 npm run build-plugin
 npx @vscode/vsce@latest package
-code --install-extension vscode-checkstyle-*.vsix
+code --install-extension checkstyle-vscode-*.vsix
 ```
 
 ### Check Linting Errors:

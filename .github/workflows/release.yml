@@ -44,7 +44,7 @@ jobs:
             exit 1
           fi
 
-          echo "vsix=vscode-checkstyle-v2-$package_version.vsix" >> "$GITHUB_OUTPUT"
+          echo "vsix=checkstyle-vscode-$package_version.vsix" >> "$GITHUB_OUTPUT"
 
       # A retry can run for the same tag if the GitHub release succeeded but marketplace publishing failed.
       # Published releases are immutable, so reuse their VSIX instead of rebuilding or replacing assets.
@@ -129,3 +129,10 @@ jobs:
             --oidc \
             --skip-duplicate \
             --packagePath "artifacts/${{ steps.release.outputs.vsix }}"
+
+      - name: Publish to Open VSX Registry
+        run: |
+          npx ovsx publish \
+            --trusted-publishing \
+            --skip-duplicate \
+            "artifacts/${{ steps.release.outputs.vsix }}"
